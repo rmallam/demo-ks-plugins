@@ -22,7 +22,19 @@ test("health endpoint returns ok", async () => {
         })
         .on("error", reject);
     });
-    assert.equal(JSON.parse(body).status, "ok");
+    const parsed = JSON.parse(body);
+    assert.equal(parsed.status, "ok");
+    assert.equal(parsed.mesh, "ambient");
+    const apiBody = await new Promise((resolve, reject) => {
+      http
+        .get("http://127.0.0.1:3099/api", (res) => {
+          let data = "";
+          res.on("data", (c) => (data += c));
+          res.on("end", () => resolve(data));
+        })
+        .on("error", reject);
+    });
+    assert.equal(JSON.parse(apiBody).service, "demo-ks-plugins");
   } finally {
     child.kill("SIGTERM");
   }
