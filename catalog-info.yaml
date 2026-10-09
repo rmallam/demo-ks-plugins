@@ -17,16 +17,18 @@ metadata:
     argocd/app-namespace: openshift-gitops
     backstage.io/kubernetes-id: demo-ks-plugins
     backstage.io/kubernetes-namespace: demo-dev
+    kiali.io/namespace: demo-dev
     vault.io/secrets-path: rhdh
-    jira/project-key: DEMO
+    jira/project-key: SCRUM
     jira/component: demo-ks-plugins
     snyk.io/org-id: stub-org
     snyk.io/org-name: stub-org
     snyk.io/project-ids: stub
     servicenow.com/entity-id: demo
     jfrog-artifactory/image-name: demo-ks-plugins
-    dynatrace.com/dynatrace-entity-id: SERVICE-DEMO
+    dynatrace.com/dynatrace-entity-id: SERVICE-39720C1E0047A5C0
     acme.io/devfile-path: devfile.yaml
+    acme.io/mesh: ambient
     acme.io/devspaces-url: https://devspaces.apps.rosa.rosa-89s85.bhg0.p3.openshiftapps.com
     acme.io/devspaces-factory-url: https://devspaces.apps.rosa.rosa-89s85.bhg0.p3.openshiftapps.com/f?url=https://github.com/rmallam/demo-ks-plugins&new
 spec:

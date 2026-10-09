@@ -15,6 +15,19 @@ function tool(bin, args) {
   }
 }
 
+function health() {
+  return { status: "ok", app: appName, mesh: "ambient" };
+}
+
+function api() {
+  return {
+    service: appName,
+    message: "ok",
+    mesh: "ambient",
+    ts: new Date().toISOString(),
+  };
+}
+
 const page = () => `<!doctype html>
 <html><head><meta charset="utf-8"><title>${appName}</title></head>
 <body style="font-family:sans-serif;margin:2rem;max-width:42rem">
@@ -28,9 +41,15 @@ const page = () => `<!doctype html>
 </body></html>`;
 
 const server = http.createServer((req, res) => {
-  if (req.url === "/health") {
+  const url = (req.url || "/").split("?")[0];
+  if (url === "/health") {
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ status: "ok", app: appName }));
+    res.end(JSON.stringify(health()));
+    return;
+  }
+  if (url === "/api") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(api()));
     return;
   }
   res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
